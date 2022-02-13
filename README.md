@@ -1,1 +1,15 @@
-# rust-full-websocket-example
+# Rust Full Websocket Example
+
+This is a boilerplate Rust Websocket Server with:
+
+- socket.io-like message format:
+  ```json
+  {
+    "event": "SOME_EVENT_NAME",
+    "data"?: <ARBITRARY_DATA>
+  }
+  ```
+- JSON serialization / deserialization to / from structs
+- async / await support for event handlers
+- argument parsing
+

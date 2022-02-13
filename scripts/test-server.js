@@ -3,7 +3,7 @@ const ws = new WebSocket('ws://127.0.0.1:3000');
 
 ws.onopen = event => {
     console.log('sending echo');
-    Array.from(Array(1).keys()).forEach(() => {
+    Array.from(Array(1000).keys()).forEach(() => {
         ws.send(JSON.stringify({
             event: 'echo',
             data: {

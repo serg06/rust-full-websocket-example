@@ -5,7 +5,7 @@ use log::*;
 use log::LevelFilter::Debug;
 use serde_json::{from_str};
 use tokio::net::{TcpListener, TcpStream};
-use tokio_tungstenite::{accept_async, tungstenite::Error as Err};
+use tokio_tungstenite::{accept_async, tungstenite::Error as Err, WebSocketStream};
 use tungstenite::Result as Res;
 
 use crate::args::{Args, Parser};
@@ -40,12 +40,17 @@ async fn handle_connection(peer: SocketAddr, stream: TcpStream) -> Res<()> {
         // Handle msg!
         if let Some(text) = get_msg_text(&msg) {
             let event: MsgIn = from_str(text).expect("Invalid input data");
-            match event {
-                MsgIn::Echo(data) => ws_stream.send(MsgOut::Echo(handle_echo(&data)).to_msg()).await?,
-                _ => warn!("Unhandled message: {:?}", event)
-            }
+            handle_event(&mut ws_stream, event).await?;
         }
     }
+
+    Ok(())
+}
+
+async fn handle_event(stream: &mut WebSocketStream<TcpStream>, event: MsgIn) -> Res<()> {
+    match event {
+        MsgIn::Echo(data) => stream.send(MsgOut::Echo(handle_echo(&data)).to_msg()).await?
+    };
 
     Ok(())
 }
