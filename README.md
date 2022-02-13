@@ -29,7 +29,7 @@ cargo run
 ### To modify:
 
 - Add your own incoming and outgoing messages to [msg_in.rs](src/msg/msg_in.rs) and [msg_out.rs](src/msg/msg_out.rs) respectively
-- Add your own message handlers to `src/echo`
+- Add your own message handlers to `src/handler`
 - Register message handlers in [main.rs](src/main.rs)::handle_event
 - Add args in [args.rs](src/args.rs)
 
