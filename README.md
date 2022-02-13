@@ -32,3 +32,8 @@ cargo run
 - Add your own message handlers to `src/echo`
 - Register message handlers in [main.rs](src/main.rs)::handle_event
 - Add args in [args.rs](src/args.rs)
+
+### Misc:
+
+- This was based off of [autobahn-server](https://github.com/snapview/tokio-tungstenite/blob/master/examples/autobahn-server.rs).
+- This code can be slightly modified to become a CLIENT instead of a SERVER. See [autobahn-client](https://github.com/snapview/tokio-tungstenite/blob/master/examples/autobahn-client.rs).
