@@ -25,3 +25,10 @@ cargo run
 
 - Open a new tab in Chrome
 - Copy-paste the code from [test-server.js](scripts/test-server.js)
+
+### To modify:
+
+- Add your own incoming and outgoing messages to [msg_in.rs](src/msg/msg_in.rs) and [msg_out.rs](src/msg/msg_out.rs) respectively
+- Add your own message handlers to `src/echo`
+- Register message handlers in [main.rs](src/main.rs)::handle_event
+- Add args in [args.rs](src/args.rs)
